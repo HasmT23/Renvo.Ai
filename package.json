@@ -1,0 +1,31 @@
+{
+  "name": "renvo-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Renvo AI Car Consultant - Monorepo",
+  "scripts": {
+    "dev:web": "cd apps/web && npm run dev",
+    "build:web": "cd apps/web && npm run build",
+    "dev:mobile": "cd apps/mobile && npx expo start",
+    "dev:mobile:web": "cd apps/mobile && npx expo start --web",
+    "dev:mobile:ios": "cd apps/mobile && npx expo start --ios",
+    "dev:mobile:android": "cd apps/mobile && npx expo start --android"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
