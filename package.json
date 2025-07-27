@@ -1,0 +1,39 @@
+{
+  "name": "renvo-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-Powered Car Consultant - Monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "mobile": "cd apps/mobile && npm start",
+    "web": "cd apps/web && npm run dev",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/renvo-ai"
+  },
+  "keywords": [
+    "ai",
+    "car-consultant",
+    "react-native",
+    "next.js",
+    "firebase",
+    "monorepo"
+  ]
+} 
