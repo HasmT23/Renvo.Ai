@@ -1,36 +1,46 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Card, Button } from 'react-native-paper';
+import { Button, Card } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
+  const handleGetStarted = () => {
+    console.log('Get Started Now clicked');
+  };
+
   const handleStartAnalysis = () => {
-    // This button should currently do nothing as per Sprint 1 requirements
-    // The alert will be removed in prompt 5
     console.log('Start AI Analysis clicked');
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.logo}>Renvo</Text>
+        <Button 
+          mode="contained" 
+          onPress={handleGetStarted}
+          style={styles.getStartedButton}
+          labelStyle={styles.getStartedButtonText}
+          compact
+        >
+          Get Started Now
+        </Button>
+      </View>
+
+      {/* Main Content */}
       <ScrollView 
-        style={styles.scrollView}
+        style={styles.content}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.header}>
-          <Text style={styles.greeting}>Welcome to Renvo</Text>
-          <Text style={styles.subtitle}>Your AI-powered car consultant</Text>
-        </View>
-
         <Card style={styles.mainCard}>
           <Card.Content style={styles.cardContent}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>Ready to List Your Vehicle?</Text>
-              <Text style={styles.cardDescription}>
-                Get AI-powered insights to optimize your car listing and maximize your selling potential.
-              </Text>
-            </View>
-
+            <Text style={styles.cardTitle}>Ready to List Your Vehicle?</Text>
+            <Text style={styles.cardDescription}>
+              Get AI-powered insights to optimize your car listing and maximize your selling potential.
+            </Text>
+            
             <View style={styles.features}>
               <View style={styles.featureItem}>
                 <Text style={styles.featureIcon}>🤖</Text>
@@ -56,6 +66,9 @@ const HomeScreen = () => {
             </Button>
           </Card.Content>
         </Card>
+        
+        {/* Spacer for bottom navigation */}
+        <View style={styles.bottomSpacer} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -66,24 +79,35 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8fafc',
   },
-  scrollView: {
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  logo: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#2563eb',
+  },
+  getStartedButton: {
+    backgroundColor: '#2563eb',
+    borderRadius: 20,
+  },
+  getStartedButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  content: {
     flex: 1,
   },
   scrollContent: {
     padding: 24,
-  },
-  header: {
-    marginBottom: 32,
-  },
-  greeting: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#6b7280',
   },
   mainCard: {
     backgroundColor: '#ffffff',
@@ -100,19 +124,19 @@ const styles = StyleSheet.create({
   cardContent: {
     padding: 24,
   },
-  cardHeader: {
-    marginBottom: 24,
-  },
   cardTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: '#111827',
     marginBottom: 12,
+    textAlign: 'center',
   },
   cardDescription: {
     fontSize: 16,
     color: '#6b7280',
     lineHeight: 24,
+    textAlign: 'center',
+    marginBottom: 24,
   },
   features: {
     flexDirection: 'row',
@@ -142,6 +166,9 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  bottomSpacer: {
+    height: 20,
   },
 });
 

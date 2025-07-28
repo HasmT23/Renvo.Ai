@@ -1,56 +1,86 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Screens
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AddVehicleScreen from '../screens/AddVehicleScreen';
+import InsightsScreen from '../screens/InsightsScreen';
+import WatchlistScreen from '../screens/WatchlistScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
-  const theme = useTheme();
-
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = 'home';
-          } else if (route.name === 'Settings') {
-            iconName = 'settings';
-          }
-
-          return <Icon name={iconName} size={size} color={color} />;
-        },
+      screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: '#2563eb',
         tabBarInactiveTintColor: '#6b7280',
         tabBarStyle: {
           backgroundColor: '#ffffff',
           borderTopWidth: 1,
           borderTopColor: '#e5e7eb',
-          paddingBottom: 8,
           paddingTop: 8,
-          height: 60,
+          paddingBottom: 8,
+          height: 70,
         },
-        headerShown: false,
-      })}
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+          marginTop: 4,
+        },
+      }}
     >
       <Tab.Screen 
-        name="Home" 
+        name="Listings" 
         component={HomeScreen}
         options={{
-          title: 'Home',
+          tabBarLabel: 'Listings',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ color, fontSize: size - 2 }}>🚗</Text>
+          ),
         }}
       />
       <Tab.Screen 
-        name="Settings" 
-        component={SettingsScreen}
+        name="AddVehicle" 
+        component={AddVehicleScreen}
         options={{
-          title: 'Settings',
+          tabBarLabel: 'Add Vehicle',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ color, fontSize: size - 2 }}>➕</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Insights" 
+        component={InsightsScreen}
+        options={{
+          tabBarLabel: 'Insights',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ color, fontSize: size - 2 }}>📊</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Watchlist" 
+        component={WatchlistScreen}
+        options={{
+          tabBarLabel: 'Watchlist',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ color, fontSize: size - 2 }}>❤️</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Profile" 
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ color, fontSize: size - 2 }}>👤</Text>
+          ),
         }}
       />
     </Tab.Navigator>

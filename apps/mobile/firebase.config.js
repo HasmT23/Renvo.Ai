@@ -13,6 +13,13 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID || "your-app-id"
 };
 
+// Debug: Log Firebase config to check if env vars are loaded
+console.log('🔥 Firebase Config:', {
+  apiKey: firebaseConfig.apiKey?.substring(0, 10) + '...',
+  projectId: firebaseConfig.projectId,
+  hasRealCredentials: firebaseConfig.apiKey !== "your-api-key"
+});
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

@@ -3,18 +3,35 @@ import { View, Text, StyleSheet, Animated } from 'react-native';
 
 const SplashScreen = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.8)).current;
 
   useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
+    // Start animations
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fadeAnim, scaleAnim]);
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
+      <Animated.View 
+        style={[
+          styles.logoContainer, 
+          { 
+            opacity: fadeAnim,
+            transform: [{ scale: scaleAnim }]
+          }
+        ]}
+      >
         <Text style={styles.logo}>Renvo</Text>
       </Animated.View>
     </View>

@@ -48,9 +48,29 @@ const AuthGatewayScreen = () => {
     console.log('Navigate to Email Sign Up');
   };
 
-  const handleEmailLogin = () => {
-    // Navigate to email login (placeholder for now)
-    console.log('Navigate to Email Login');
+  const handleEmailLogin = async () => {
+    try {
+      console.log('🔐 Signing in anonymously for testing...');
+      const { signInAnonymously } = await import('firebase/auth');
+      await signInAnonymously(auth);
+      console.log('✅ Anonymous login successful!');
+    } catch (error) {
+      console.log('❌ Anonymous login error:', error.message);
+      
+      // Fallback: try creating test account
+      const testEmail = 'test@renvo.ai';
+      const testPassword = 'test123456';
+      
+      try {
+        console.log('👤 Creating test account...');
+        const { createUserWithEmailAndPassword } = await import('firebase/auth');
+        await createUserWithEmailAndPassword(auth, testEmail, testPassword);
+        console.log('✅ Account created and logged in!');
+      } catch (createError) {
+        console.log('❌ Create account error:', createError.message);
+        console.log('🔧 Please enable Email/Password or Anonymous authentication in Firebase Console');
+      }
+    }
   };
 
   return (

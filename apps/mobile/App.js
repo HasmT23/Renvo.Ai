@@ -22,7 +22,11 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setIsLoading(false);
+      
+      // Show splash screen for minimum 2 seconds
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     });
 
     return unsubscribe;
